@@ -9,11 +9,11 @@ export default function Router() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!accessToken) {
-      navigate("/promotion");
-    } else if (window.location.pathname === "/promotion") {
-      navigate("/");
-    }
+    // if (!accessToken) {
+    //   navigate("/promotion");
+    // } else if (window.location.pathname === "/promotion") {
+    //   navigate("/");
+    // }
   }, [accessToken, navigate]);
 
   return (

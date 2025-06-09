@@ -12,6 +12,7 @@ function Header() {
   const [showLogout, setShowLogout] = useState(false);
   const [filteredBoardList, setFilteredBoardList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showLogin, setShowLogin] = useState(false);
   const [search, setSearch] = useState("");
 
   const { searchList } = useSearchList({ title: search });
@@ -139,7 +140,7 @@ function Header() {
                 <I.Search />
               </S.SearchIcon>
             </S.SearchContainer>
-            {accessToken && (
+            {accessToken ? (
               <span
                 onClick={() => {
                   setShowLogout(true);
@@ -151,6 +152,14 @@ function Header() {
                 }}
               >
                 로그아웃
+              </span>
+            ) : (
+              <span
+                onClick={() => {
+                  setShowLogin(true);
+                }}
+              >
+                로그인
               </span>
             )}
           </S.FixedInput>
@@ -171,6 +180,9 @@ function Header() {
           ))}
         </S.InfoContainer>
       </S.Header>
+      {showLogin && (
+        <C.Login onConfirm={onConfirm} setShowLogin={setShowLogin} />
+      )}
       {showMenu && (
         <DropMenu
           onMouseEnter={() => {
