@@ -14,10 +14,11 @@ export const Header = styled.header`
 export const MenuContainer = styled.div`
   display: flex;
   align-items: center;
+  gap: 84px;
   svg {
     cursor: pointer;
   }
-`;
+  `;
 
 export const InfoContainer = styled.div`
   display: flex;
@@ -29,12 +30,20 @@ export const InfoContainer = styled.div`
     margin-left: 20px;
     cursor: pointer;
   }
-`;
+  
+  @media (max-width: 840px) {
+    display: none;
+  }
+  `;
 
 export const Nav = styled.nav`
   display: flex;
   padding-left: 3vw;
   gap: 3vw;
+  
+  @media (max-width: 840px) {
+    display: none;
+  }
 `;
 
 export const HeaderItem = styled.div`
