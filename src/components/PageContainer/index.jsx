@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import * as C from "../../components";
 import * as S from "./style";
+import * as I from "../../assets";
+import { useSearchList } from "../../Hooks";
 
 function PageContainer({
   children,
@@ -17,12 +19,45 @@ function PageContainer({
   hasTitle
 }) {
   const { id } = useParams();
+  const searchInputRef = useRef(null);
+  const [search, setSearch] = useState("");
+  const [filteredBoardList, setFilteredBoardList] = useState([]);
+  const [showMenu, setShowMenu] = useState(false);
+  const { searchList } = useSearchList({ title: search });
+
+  const handleSearchChange = e => {
+    let inputValue = e.target.value;
+    setSearch(inputValue);
+
+    if (inputValue.length <= 0) {
+      setFilteredBoardList([]);
+    } else {
+      const updatedFilteredList = searchList.filter(item => {
+        return item.title.toLowerCase().includes(inputValue.toLowerCase());
+      });
+      setFilteredBoardList(updatedFilteredList);
+    }
+  };
 
   return (
     <>
-      <>
+      <S.HeaderWrapper>
         <C.Header />
-      </>
+        <S.SearchContainer>
+          <S.SearchInput
+            ref={searchInputRef}
+            placeholder="search"
+            onChange={handleSearchChange}
+            value={search}
+            onMouseEnter={() => {
+              setShowMenu(false);
+            }}
+          />
+          <S.SearchIcon>
+            <I.Search />
+          </S.SearchIcon>
+        </S.SearchContainer>
+      </S.HeaderWrapper>
       <S.Page>
         <S.PageContainer>
           <S.TitleContainer>

@@ -9,7 +9,7 @@ const HistoryDetailItem = ({ content, createdDate }) => {
   return (
     <>
       <S.NTBox>
-        <S.Date>생성 일자 : {createdDate}</S.Date>
+        {/* <S.Date>생성 일자 : {createdDate}</S.Date> */}
       </S.NTBox>
 
       <S.Content dangerouslySetInnerHTML={{ __html: html }} />

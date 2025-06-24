@@ -16,6 +16,10 @@ export const Content = styled.p`
   h4 {
     margin-bottom: 20px;
   }
+
+  @media (max-width: 840px) {
+    margin-top: 0px;
+  }
 `;
 
 export const NTBox = styled.div`
@@ -24,6 +28,10 @@ export const NTBox = styled.div`
   gap: 6px;
   margin-top: 10px;
   margin-left: 68%;
+
+  @media (max-width: 840px) {
+    display: none;
+  }
 `;
 
 export const Date = styled.p`

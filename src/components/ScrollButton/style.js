@@ -22,5 +22,6 @@ export const ScrollButtonContainer = styled.div`
 
   @media screen and (max-width: 700px) {
     bottom: 4.5%;
+    display: none;
   }
 `;

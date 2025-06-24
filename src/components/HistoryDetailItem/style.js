@@ -4,7 +4,6 @@ export const Content = styled.p`
   font-size: 1rem;
   color: #191919;
   line-height: 26px;
-  margin-top: -40px;
 
   a {
     color: #007eff;

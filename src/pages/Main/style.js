@@ -27,6 +27,12 @@ export const Title = styled.div`
     font-weight: 600;
     margin-left: 4px;
   }
+
+  @media screen and (max-width: 840px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 `;
 
 export const Illusion = styled.div`
@@ -59,6 +65,10 @@ export const EmailLink = styled.a`
 
 export const Outline = styled.div`
   margin-left: 28px;
+
+  @media screen and (max-width: 840px) {
+    margin-left: 0;
+  }
 `;
 
 export const OutlineContent = styled.div`
@@ -81,6 +91,13 @@ export const SchoolVideoContainer = styled.div`
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    outline: none;
+    border: none;
+
+    @media screen and (max-width: 840px) {
+      width: 100%;
+      border-radius: 8px;
+    }
   }
 `;
 
@@ -101,6 +118,10 @@ export const SchoolSonContainer = styled.div`
 
 export const DepartmentContainer = styled.div`
   margin-left: 28px;
+  
+  @media screen and (max-width: 840px) {
+    margin-left: 0;
+  }
 `;
 
 export const DepartmentTitle = styled.div`

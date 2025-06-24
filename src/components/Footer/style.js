@@ -4,6 +4,7 @@ export const FooterConainer = styled.div`
   height: 70px;
   background-color: #dddddd;
   color: #636363;
+  text-align: center;
   font-size: 1rem;
   display: flex;
   justify-content: center;
