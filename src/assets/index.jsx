@@ -25,3 +25,8 @@ export { default as ImageIcon } from "./ImageIcon";
 export { default as Search } from "./Search";
 export { default as Cloud } from "./Cloud";
 export { default as AlarmIcon } from "./AlarmIcon";
+export { default as MobileLogo } from "./MobileLogo";
+export { default as Hamburger } from "./Hamburger";
+export { default as SideNotice } from "./SideNotice";
+export { default as SideSchool } from "./SideSchool";
+export { default as SideEtc } from "./SideEtc";
