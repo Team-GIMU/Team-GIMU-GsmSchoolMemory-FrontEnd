@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import * as C from "../../components";
 import * as S from "./style";
 import * as I from "../../assets";
-import { useSearchList } from "../../Hooks";
+import { useEdit, useSearchList } from "../../Hooks";
+import TokenManager from "../../apis/TokenManager";
 
 function PageContainer({
   children,
@@ -24,6 +25,17 @@ function PageContainer({
   const [filteredBoardList, setFilteredBoardList] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
   const { searchList } = useSearchList({ title: search });
+  const tokenManager = new TokenManager();
+
+  const CheckTokenHandler = () => {
+    const hasAccess = tokenManager.validateToken(
+      tokenManager.accessExp,
+      tokenManager.accessToken
+    );
+
+    if (hasAccess) return true;
+    else return false;
+  };
 
   const handleSearchChange = e => {
     let inputValue = e.target.value;
@@ -38,6 +50,10 @@ function PageContainer({
       setFilteredBoardList(updatedFilteredList);
     }
   };
+
+  useEffect(() => {
+    CheckTokenHandler();
+  }, [tokenManager.accessToken]);
 
   return (
     <>
@@ -72,7 +88,7 @@ function PageContainer({
                     <C.ContentsButton>편집</C.ContentsButton>
                   </Link>
                 )}
-                {hasPostButton && (
+                {hasPostButton && CheckTokenHandler() && (
                   <Link to={url}>
                     <C.ContentsButton>추가</C.ContentsButton>
                   </Link>
