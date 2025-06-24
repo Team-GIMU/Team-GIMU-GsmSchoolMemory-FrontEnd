@@ -38,6 +38,9 @@ export const TitleInputBox = styled.div`
 
   span {
     margin-left: 12px;
+    @media screen and (max-width: 840px) {
+    margin: 0px;
+  }
   }
 
   input {
@@ -47,6 +50,10 @@ export const TitleInputBox = styled.div`
     padding-left: 8px;
     outline: none;
     color: #191919;
+  }
+
+  @media screen and (max-width: 840px) {
+    margin-left: 0px;
   }
 `;
 

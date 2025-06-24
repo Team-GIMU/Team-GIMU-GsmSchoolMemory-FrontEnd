@@ -1,5 +1,73 @@
 import styled from "styled-components";
 
+export const HeaderWrapper = styled.div`
+  @media screen and (max-width: 840px) {
+    flex-direction: column;
+  }
+`;
+
+export const SearchContainer = styled.div`
+  display: none;
+
+  @media screen and (max-width: 700px) {
+    display: flex;
+    border: 1px solid #c0c0c0;
+    cursor: pointer;
+    position: relative;
+  }
+`;
+
+export const SearchInput = styled.input`
+  display: flex;
+  width: 100%;
+  height: 52px;
+  outline: none;
+  border: none;
+  text-indent: 10px;
+
+  &::placeholder {
+    color: #c0c0c0;
+  }
+`;
+
+export const SearchItem = styled.ul`
+  background-color: white;
+  width: 10.1vw;
+  height: 30px;
+  border: 1px solid #c0c0c0;
+  color: black;
+  font-size: 12.5px;
+  border-top: 0;
+  display: flex;
+  align-items: center;
+  text-indent: 9px;
+  position: absolute;
+  top: ${prop => prop.top}px;
+  z-index: 3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover {
+    background-color: #e4f1ff;
+  }
+`;
+
+export const SearchIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 50px;
+  background-color: #fff;
+  border-left: 1px solid #c0c0c0;
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+`;
+
 export const PageContainer = styled.div`
   position: relative;
   width: 70vw;
@@ -15,11 +83,11 @@ export const PageContainer = styled.div`
     margin: 0;
     min-height: calc(100vh - 130px);
   }
-`;
+  `;
 
 export const Page = styled.div`
   display: flex;
-`;
+  `;
 
 export const TitleContainer = styled.div`
   color: #636363;
@@ -31,6 +99,7 @@ export const TitleContainer = styled.div`
 
   @media screen and (max-width: 500px) {
     font-size: 2rem;
+    margin-top: 32px;
   }
 `;
 

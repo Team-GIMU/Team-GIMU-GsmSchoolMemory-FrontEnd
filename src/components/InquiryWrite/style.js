@@ -68,7 +68,7 @@ export const WriteBox = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  /* padding: 20px; */
 `;
 
 export const RegisterButton = styled.button`

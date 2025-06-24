@@ -70,7 +70,7 @@ function WriteOption({ content, setContent, textareaRef, setNumArr }) {
         numArr.length + 4,
         numArr.length + 5
       ]);
-      addOption(">>\n" + ">==제목==<\n" + "\n___\n" + "(텍스트)\n" + "<<");
+      addOption(">>\n" + ">==제목==<\n" + "\n<hr />\n" + "(텍스트)\n" + "<<");
     } else if (option === "quote") {
       addOption("> 텍스트");
     } else if (option === "a") {
@@ -87,70 +87,74 @@ function WriteOption({ content, setContent, textareaRef, setNumArr }) {
 
   return (
     <S.OptionContainer>
-      <div onClick={() => passOption("h1")}>
-        <I.H1Icon />
-        <span style={{ left: "1%" }}>제목1</span>
-      </div>
-      <div onClick={() => passOption("h2")}>
-        <I.H2Icon />
-        <span style={{ left: "8%" }}>제목2</span>
-      </div>
-      <div onClick={() => passOption("h3")}>
-        <I.H3Icon />
-        <span style={{ left: "15.2%" }}>제목3</span>
-      </div>
-      <div onClick={() => passOption("h4")}>
-        <I.H4Icon />
-        <span style={{ left: "23%" }}>제목4</span>
-      </div>
-      <div className="unFunctionIcon">
-        <I.DivideLineIcon />
-      </div>
-      <div onClick={() => passOption("b")}>
-        <I.BoldIcon />
-        <span style={{ left: "34%" }}>굵은 글씨</span>
-      </div>
-      <div onClick={() => passOption("i")}>
-        <I.InclineIcon />
-        <span style={{ left: "41%" }}>기울임꼴</span>
-      </div>
-      <div onClick={() => passOption("draw")}>
-        <I.DrawIcon />
-        <span style={{ left: "48%" }}>취소선</span>
-      </div>
-      <div className="unFunctionIcon">
-        <I.DivideLineIcon />
-      </div>
-      <div onClick={() => passOption("details")}>
-        <I.Toggle />
-        <span style={{ left: "61%" }}>토글</span>
-      </div>
-      <div onClick={() => passOption("quote")}>
-        <I.QuoteIcon />
-        <span style={{ left: "66.5%" }}>인용문</span>
-      </div>
-      <div onClick={() => passOption("a")}>
-        <I.LinkIcon />
-        <span>링크</span>
-      </div>
-      <div>
-        <label htmlFor="file">
-          <I.ImageIcon />
-        </label>
-        <input
-          accept="file/*"
-          multiple
-          type="file"
-          id="file"
-          ref={fileRef}
-          onChange={handleUpload}
-        />
-        <span className="imgTooltip">이미지(png, jpeg, gif, svg+xm)</span>
-      </div>
-      <div onClick={() => passOption("code")}>
-        <I.CodeIcon />
-        <span className="codeTooltip">코드블럭</span>
-      </div>
+      <S.MobileOptionContainer>
+        <div onClick={() => passOption("h1")}>
+          <I.H1Icon />
+          <span>제목1</span>
+        </div>
+        <div onClick={() => passOption("h2")}>
+          <I.H2Icon />
+          <span>제목2</span>
+        </div>
+        <div onClick={() => passOption("h3")}>
+          <I.H3Icon />
+          <span>제목3</span>
+        </div>
+        <div onClick={() => passOption("h4")}>
+          <I.H4Icon />
+          <span>제목4</span>
+        </div>
+        <div className="unFunctionIcon">
+          <I.DivideLineIcon />
+        </div>
+        <div onClick={() => passOption("b")}>
+          <I.BoldIcon />
+          <span>굵은 글씨</span>
+        </div>
+        <div onClick={() => passOption("i")}>
+          <I.InclineIcon />
+          <span>기울임꼴</span>
+        </div>
+        <div onClick={() => passOption("draw")}>
+          <I.DrawIcon />
+          <span>취소선</span>
+        </div>
+      </S.MobileOptionContainer>
+      <S.MobileOptionContainer>
+        <div className="unFunctionIcon">
+          <I.DivideLineIcon />
+        </div>
+        <div onClick={() => passOption("details")}>
+          <I.Toggle />
+          <span>토글</span>
+        </div>
+        <div onClick={() => passOption("quote")}>
+          <I.QuoteIcon />
+          <span>인용문</span>
+        </div>
+        <div onClick={() => passOption("a")}>
+          <I.LinkIcon />
+          <span>링크</span>
+        </div>
+        <div>
+          <label htmlFor="file">
+            <I.ImageIcon />
+          </label>
+          <input
+            accept="file/*"
+            multiple
+            type="file"
+            id="file"
+            ref={fileRef}
+            onChange={handleUpload}
+          />
+          <span className="imgTooltip">이미지(png, jpeg, gif, svg+xm)</span>
+        </div>
+        <div onClick={() => passOption("code")}>
+          <I.CodeIcon />
+          <span className="codeTooltip">코드블럭</span>
+        </div>
+      </S.MobileOptionContainer>
     </S.OptionContainer>
   );
 }

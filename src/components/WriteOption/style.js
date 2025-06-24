@@ -8,12 +8,27 @@ export const OptionContainer = styled.div`
   background-color: none;
   margin-bottom: 8px;
   padding: 3px 10px;
-  position: relative;
+
+  @media (max-width: 840px) {
+    width: 100%;
+    flex-direction: column;
+  }
+`;
+
+export const MobileOptionContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 
   div {
-    display: inline-block;
-    width: 100%;
-    
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+    flex-shrink: 0;
+
     svg {
       margin-left: 12px;
       cursor: pointer;
@@ -51,23 +66,22 @@ export const OptionContainer = styled.div`
         content: " ";
       }
     }
-    
+
     &:hover {
       span {
         display: block;
       }
     }
 
-      .imgTooltip {
-        width: 200px;
-        left: 63%;
-        
-      }
+    .imgTooltip {
+      width: 200px;
+      left: 63%;
+    }
 
-      .codeTooltip {
-        width: 70px;
-        left: 86.7%;
-      }
+    .codeTooltip {
+      width: 70px;
+      left: 86.7%;
+    }
   }
 
   .unFunctionIcon {
