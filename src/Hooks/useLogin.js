@@ -2,43 +2,46 @@ import TokenManager from "../apis/TokenManager";
 import { useEffect } from "react";
 import useFetch from "./useFetch";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-const useLogin = () => {
+const useLogin = ({ email, password }) => {
   const navigate = useNavigate();
-  const searchParams = new URLSearchParams(window.location.search);
-  const gauthCode = searchParams.get("code");
 
   const { fetch } = useFetch({
-    url: "/auth",
+    url: "/auth/login",
     method: "post",
+    body: {
+      email,
+      password
+    },
     skipLogin: true,
     onSuccess: data => {
       if (typeof window !== "undefined") {
         const tokenManager = new TokenManager();
         tokenManager.setTokens(data);
+        toast.success("로그인에 성공하였습니다.");
+        console.log(data.accessTokenExpiresIn, data.refreshTokenExpiresIn);
+        navigate("/");
       }
-      navigate("/");
-      window.location.reload();
     },
     onFailure: () => {
-      navigate("/promotion");
+      toast.error("로그인에 실패하였습니다.");
     }
   });
 
   useEffect(() => {
     const checkLoggedIn = () => {
       const tokenManager = new TokenManager();
-      return tokenManager.initToken();
+      return tokenManager.accessToken && tokenManager.validateToken(tokenManager.accessExp, tokenManager.accessToken);
     };
 
     if (checkLoggedIn()) {
       navigate("/");
       return;
     }
+  }, [navigate]);
 
-    if (!gauthCode) return;
-    fetch({ code: gauthCode });
-  }, [gauthCode, navigate]);
+  return { fetch };
 };
 
 export default useLogin;

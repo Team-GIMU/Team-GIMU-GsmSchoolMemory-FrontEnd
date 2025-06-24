@@ -26,20 +26,32 @@ class TokenManager {
     if (typeof window === "undefined") return;
     this._accessToken = localStorage.getItem(accessToken);
     this._refreshToken = localStorage.getItem(refreshToken);
-    this._accessExp = localStorage.getItem(accessExp);
-    this._refreshExp = localStorage.getItem(refreshExp);
+    
+    const storedAccessExp = localStorage.getItem(accessExp);
+    const storedRefreshExp = localStorage.getItem(refreshExp);
+    
+    this._accessExp = storedAccessExp ? new Date(storedAccessExp) : null;
+    this._refreshExp = storedRefreshExp ? new Date(storedRefreshExp) : null;
   }
 
   setTokens(tokens) {
+    const now = new Date();
+    const accessExpTime = new Date(now.getTime() + (tokens.accessTokenExpiresIn || 0));
+    const refreshExpTime = new Date(now.getTime() + (tokens.refreshTokenExpiresIn || 0));
+    
     this._accessToken = tokens.accessToken;
     this._refreshToken = tokens.refreshToken;
-    this._accessExp = tokens.accessExp;
-    this._refreshExp = tokens.refreshExp;
+    this._accessExp = accessExpTime;
+    this._refreshExp = refreshExpTime;
 
+    console.log(accessExpTime, refreshExpTime);
+    console.log(tokens.accessTokenExpiresIn, tokens.refreshTokenExpiresIn);
+    console.log(this._accessExp, this._refreshExp);
+    
     localStorage.setItem(accessToken, tokens.accessToken);
     localStorage.setItem(refreshToken, tokens.refreshToken);
-    localStorage.setItem(accessExp, tokens.accessExp);
-    localStorage.setItem(refreshExp, tokens.refreshExp);
+    localStorage.setItem(accessExp, accessExpTime.toISOString());
+    localStorage.setItem(refreshExp, refreshExpTime.toISOString());
   }
 
   removeTokens() {

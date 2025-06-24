@@ -4,21 +4,25 @@ import useFetch from "./useFetch";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const useSignup = ({ email, name, password, schoolNum }) => {
+const useSignup = ({ email, name, stuNum, password }) => {
   const navigate = useNavigate();
 
-  const grade = schoolNum ? Number(schoolNum.slice(0, 1)) : 0;
-  const classNum = schoolNum ? Number(schoolNum.slice(1, 2)) : 0;
-  const stuNum = schoolNum ? Number(schoolNum.slice(2, 4)) : 0;
+  const grade = stuNum ? Number(stuNum.slice(0, 1)) : 0;
+  const classNum = stuNum ? Number(stuNum.slice(1, 2)) : 0;
+  const studentNum = stuNum ? Number(stuNum.slice(2, 4)) : 0;
 
   const { fetch } = useFetch({
     url: "/auth",
     method: "post",
+    body: {
+      email,
+      name,
+      studentNum,
+      password,
+      grade,
+      classNum
+    },
     onSuccess: () => {
-      // if (typeof window !== "undefined") {
-      //   const tokenManager = new TokenManager();
-      //   tokenManager.setTokens(data);
-      // }
       toast.success("회원가입이 완료되었습니다.");
       navigate("/");
       window.location.reload();
@@ -28,19 +32,7 @@ const useSignup = ({ email, name, password, schoolNum }) => {
     }
   });
 
-  useEffect(() => {
-    const checkLoggedIn = () => {
-      const tokenManager = new TokenManager();
-      return tokenManager.initToken();
-    };
-
-    if (checkLoggedIn()) {
-      navigate("/");
-      return;
-    }
-
-    fetch({ email, name, password, grade, classNum, stuNum });
-  }, [navigate]);
+  return { fetch };
 };
 
 export default useSignup;

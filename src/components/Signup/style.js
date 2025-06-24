@@ -34,9 +34,8 @@ export const LoginContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 32px;
   z-index: 101;
-  gap: 40px;
   & > svg {
     position: absolute;
     right: 16px;
@@ -45,7 +44,9 @@ export const LoginContainer = styled.div`
   }
 
   @media (max-width: 442px) {
+    margin-top: 60px;
     width: full;
+    height: 100vh;
   }
 `;
 
@@ -73,13 +74,14 @@ export const LoginTitle = styled.div`
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 14px;
 `;
 
 export const FormContainer = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  justify-content: space-between;
 `;
 
 export const YesButton = styled.button`
@@ -111,4 +113,8 @@ export const Footer = styled.p`
 
 export const Signup = styled.button`
   color: #007eff;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: transparent;
 `;

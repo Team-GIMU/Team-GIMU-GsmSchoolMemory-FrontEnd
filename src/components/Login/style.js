@@ -28,7 +28,8 @@ export const IconBox = styled.div`
 
 export const LoginContainer = styled.div`
   padding: 60px;
-  width: 442px;
+  max-width: 442px;
+  width: 100%;
   background-color: #fff;
   border-radius: 10px;
   position: relative;
@@ -36,7 +37,6 @@ export const LoginContainer = styled.div`
   flex-direction: column;
   gap: 40px;
   z-index: 101;
-  gap: 40px;
   & > svg {
     position: absolute;
     right: 16px;
@@ -45,7 +45,9 @@ export const LoginContainer = styled.div`
   }
 
   @media (max-width: 442px) {
+    margin-top: 90px;
     width: full;
+    height: 100vh;
   }
 `;
 
@@ -77,8 +79,10 @@ export const InputContainer = styled.div`
 `;
 
 export const FormContainer = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 120px;
 `;
 
@@ -89,12 +93,16 @@ export const YesButton = styled.button`
   cursor: pointer;
   padding-top: 12px;
   padding-bottom: 12px;
-  border-radius: 10px;
-  border: 1px solid #007eff;
+  border: none;
   margin-top: 12px;
   font-size: 18px;
   line-height: 28px;
   font-weight: bold;
+
+  &:disabled {
+    background-color: #c0c0c0;
+    cursor: not-allowed;
+  }
 `;
 
 export const ButtonContainer = styled.div`
@@ -111,4 +119,7 @@ export const Footer = styled.p`
 
 export const Signup = styled.button`
   color: #007eff;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
 `;
