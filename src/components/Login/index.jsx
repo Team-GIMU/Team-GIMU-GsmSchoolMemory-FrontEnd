@@ -3,22 +3,30 @@ import * as S from "./style";
 import * as I from "../../assets";
 import Input from "./Input";
 import { toast } from "react-toastify";
+import { useLogin } from "../../Hooks";
 
-function Login({ setShowLogin, onConfirm }) {
+function Login({ setShowLogin, setSignup }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const 
+  const { fetch: postLogin } = useLogin({ email, password });
 
   function showLoginModal() {
     setShowLogin(prev => !prev);
   }
-  const onClick = () => {
+
+  function onClick() {
+    if (!email || !password) {
+      toast.error("이메일과 비밀번호를 입력해주세요.");
+      return;
+    }
     setShowLogin(prev => !prev);
-    onConfirm();
-    toast.success("로그인에 성공하였습니다."); // 로그인 hook 추가
+    postLogin({ email, password });
   };
 
-  useEffect(() => {}, [email]);
+  function changeModal() {
+    setShowLogin(false);
+    setSignup(true);
+  }
 
   return (
     <>
@@ -52,9 +60,9 @@ function Login({ setShowLogin, onConfirm }) {
               />
             </S.InputContainer>
             <S.ButtonContainer>
-              <S.YesButton onClick={onClick}>로그인</S.YesButton>
+              <S.YesButton onClick={onClick} disabled={!email || !password}>로그인</S.YesButton>
               <S.Footer>
-                계정이 없다면? <S.Signup type="button" >회원가입</S.Signup>
+                계정이 없다면? <S.Signup type="button" onClick={changeModal}>회원가입</S.Signup>
               </S.Footer>
             </S.ButtonContainer>
           </S.FormContainer>

@@ -6,9 +6,39 @@ export const Header = styled.header`
   background-color: #007eff;
   display: flex;
   align-items: center;
-  padding: 0 8vw;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+  @media screen and (max-width: 840px) {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 500;
+  }
+`;
+
+export const Logo = styled.div`
+  display: block;
+
+  @media screen and (max-width: 840px) {
+    display: none;
+  }
+`;
+
+export const HiddenLogo = styled.div`
+  display: none;
+
+  @media screen and (max-width: 840px) {
+    display: block;
+  }
+`;
+
+export const HeaderContainer = styled.div`
+  max-width: 1400px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const MenuContainer = styled.div`
@@ -18,7 +48,29 @@ export const MenuContainer = styled.div`
   svg {
     cursor: pointer;
   }
-  `;
+
+  @media (max-width: 840px) {
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+export const SidebarButton = styled.div`
+  display: none;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 840px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+`;
 
 export const InfoContainer = styled.div`
   display: flex;
@@ -30,17 +82,16 @@ export const InfoContainer = styled.div`
     margin-left: 20px;
     cursor: pointer;
   }
-  
+
   @media (max-width: 840px) {
     display: none;
   }
-  `;
+`;
 
 export const Nav = styled.nav`
   display: flex;
-  padding-left: 3vw;
-  gap: 3vw;
-  
+  gap: 57px;
+
   @media (max-width: 840px) {
     display: none;
   }
