@@ -12,7 +12,9 @@ function Header() {
   const [showLogout, setShowLogout] = useState(false);
   const [filteredBoardList, setFilteredBoardList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [showSignup, setShowSignup] = useState(false);
   const [search, setSearch] = useState("");
 
   const { searchList } = useSearchList({ title: search });
@@ -47,7 +49,7 @@ function Header() {
   };
 
   const onConfirm = () => {
-    deleteQuery();
+    // deleteQuery();
   };
 
   const handleSearchChange = e => {
@@ -105,83 +107,105 @@ function Header() {
           setShowMenu(false);
         }}
       >
-        <S.MenuContainer>
-          <Link to="/">
-            <I.Logo />
-          </Link>
-          <S.Nav>
-            <S.HeaderItem>
-              <I.Notice />
-              <span>공지</span>
-            </S.HeaderItem>
-            <S.HeaderItem>
-              <I.School />
-              <span>학교</span>
-            </S.HeaderItem>
-            <S.HeaderItem>
-              <I.Etc />
-              <span>기타</span>
-            </S.HeaderItem>
-          </S.Nav>
-        </S.MenuContainer>
-        <S.InfoContainer>
-          <S.FixedInput>
-            <S.SearchContainer>
-              <S.SearchInput
-                ref={searchInputRef}
-                placeholder="search"
-                onChange={handleSearchChange}
-                value={search}
-                onMouseEnter={() => {
-                  setShowMenu(false);
-                }}
-              />
-              <S.SearchIcon>
-                <I.Search />
-              </S.SearchIcon>
-            </S.SearchContainer>
-            {accessToken ? (
-              <span
-                onClick={() => {
-                  setShowLogout(true);
-                  setShowMenu(false);
-                  onDelete({
-                    url: "/auth",
-                    method: "delete"
-                  });
-                }}
-              >
-                로그아웃
-              </span>
-            ) : (
-              <span
-                onClick={() => {
-                  setShowLogin(true);
-                }}
-              >
-                로그인
-              </span>
-            )}
-          </S.FixedInput>
-          {filteredBoardList.map((item, index) => (
+        <S.HeaderContainer>
+          <S.MenuContainer>
             <Link
-              key={item.id}
-              to={`/board/${item.id}`}
-              onClick={() => setSearch("")}
+              to="/"
+              onClick={() => {
+                navigate("/");
+                window.location.reload();
+              }}
             >
-              <S.SearchItem
-                key={item.id}
-                top={29 * (index + 1) + 17}
-                onMouseEnter={() => setShowMenu(false)}
-              >
-                {item.title}
-              </S.SearchItem>
+              <S.Logo>
+                <I.Logo />
+              </S.Logo>
+              <S.HiddenLogo>
+                <I.MobileLogo />
+              </S.HiddenLogo>
             </Link>
-          ))}
-        </S.InfoContainer>
+            <S.SidebarButton onClick={() => setShowSidebar(true)}>
+              <I.Hamburger />
+            </S.SidebarButton>
+            <S.Nav>
+              <S.HeaderItem>
+                <I.Notice />
+                <span>공지</span>
+              </S.HeaderItem>
+              <S.HeaderItem>
+                <I.School />
+                <span>학교</span>
+              </S.HeaderItem>
+              <S.HeaderItem>
+                <I.Etc />
+                <span>기타</span>
+              </S.HeaderItem>
+            </S.Nav>
+          </S.MenuContainer>
+          <S.InfoContainer>
+            <S.FixedInput>
+              <S.SearchContainer>
+                <S.SearchInput
+                  ref={searchInputRef}
+                  placeholder="search"
+                  onChange={handleSearchChange}
+                  value={search}
+                  onMouseEnter={() => {
+                    setShowMenu(false);
+                  }}
+                />
+                <S.SearchIcon>
+                  <I.Search />
+                </S.SearchIcon>
+              </S.SearchContainer>
+              {tokenManager.accessToken &&
+              tokenManager.validateToken(
+                tokenManager.accessExp,
+                tokenManager.accessToken
+              ) ? (
+                <span
+                  onClick={() => {
+                    setShowLogout(true);
+                    setShowMenu(false);
+                    tokenManager.removeTokens();
+                    navigate("/");
+                  }}
+                >
+                  로그아웃
+                </span>
+              ) : (
+                <span
+                  onClick={() => {
+                    setShowLogin(true);
+                  }}
+                >
+                  로그인
+                </span>
+              )}
+            </S.FixedInput>
+            {filteredBoardList.map((item, index) => (
+              <Link
+                key={item.id}
+                to={`/board/${item.id}`}
+                onClick={() => setSearch("")}
+              >
+                <S.SearchItem
+                  key={item.id}
+                  top={29 * (index + 1) + 17}
+                  onMouseEnter={() => setShowMenu(false)}
+                >
+                  {item.title}
+                </S.SearchItem>
+              </Link>
+            ))}
+          </S.InfoContainer>
+        </S.HeaderContainer>
       </S.Header>
       {showLogin && (
-        <C.Login onConfirm={onConfirm} setShowLogin={setShowLogin} />
+        <C.Login
+          onConfirm={onConfirm}
+          setShowLogin={setShowLogin}
+          setSignup={() => setShowSignup(true)}
+        />
       )}
       {showMenu && (
         <DropMenu
@@ -198,6 +222,15 @@ function Header() {
           showLogout={showLogout}
           setShowLogout={setShowLogout}
           onConfirm={onConfirm}
+        />
+      )}
+      {showSignup && (
+        <C.Signup setSignup={setShowSignup} setShowLogin={setShowLogin} />
+      )}
+      {showSidebar && (
+        <C.Sidebar
+          setShowSidebar={setShowSidebar}
+          setShowLogin={setShowLogin}
         />
       )}
     </>
