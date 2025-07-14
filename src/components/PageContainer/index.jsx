@@ -218,7 +218,7 @@ function PageContainer({
             value={comment}
             onChange={e => setComment(e.target.value)}
           />
-          <S.SubmitButton type="button">
+          <S.SubmitButton type="submit">
             댓글 달기
           </S.SubmitButton>
         </S.InputBox>
