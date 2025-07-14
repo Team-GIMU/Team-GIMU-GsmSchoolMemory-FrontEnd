@@ -17,7 +17,6 @@ function EditWriteBox({
 }) {
   const role = GetRole();
   const isAdmin = role === "관리자";
-  const isUser = role === "사용자";
 
   return (
     <S.EditWriteBoxContainer>
@@ -50,7 +49,6 @@ function EditWriteBox({
               onChange={onChange}
               value={detailCategory}
             >
-              <option value="select">선택해주세요</option>
               {category === "STUDENT" && (
                 <>
                   <option value="SEVENTH">7기</option>
@@ -114,7 +112,6 @@ function EditWriteBox({
               onChange={onChange}
               value={detailCategory}
             >
-              <option value="select">선택해주세요</option>
 
               {category === "CLUB" && (
                 <>
