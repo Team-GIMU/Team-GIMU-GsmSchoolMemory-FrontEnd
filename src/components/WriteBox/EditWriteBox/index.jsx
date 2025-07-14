@@ -101,7 +101,7 @@ function EditWriteBox({
             </select>
           </>
         )}
-        {type === "글쓰기" && (
+        {!isAdmin && type === "글쓰기" && (
           <>
             <span>카테고리</span>
             <select name="category" onChange={onChange} value={category}>
