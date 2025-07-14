@@ -1,8 +1,12 @@
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import React, { useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import * as C from "../../components";
 import * as S from "./style";
 import * as I from "../../assets";
+import { useEdit, useSearchList } from "../../Hooks";
+import TokenManager from "../../apis/TokenManager";
 import { useFetch, useSearchList } from "../../Hooks";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
@@ -28,6 +32,17 @@ function PageContainer({
   const [filteredBoardList, setFilteredBoardList] = useState([]);
   const [showMenu, setShowMenu] = useState(false);
   const { searchList } = useSearchList({ title: search });
+  const tokenManager = new TokenManager();
+
+  const CheckTokenHandler = () => {
+    const hasAccess = tokenManager.validateToken(
+      tokenManager.accessExp,
+      tokenManager.accessToken
+    );
+
+    if (hasAccess) return true;
+    else return false;
+  };
   const { fetch } = useFetch({
     url: "/comment",
     method: "post",
@@ -57,6 +72,10 @@ function PageContainer({
       setFilteredBoardList(updatedFilteredList);
     }
   };
+
+  useEffect(() => {
+    CheckTokenHandler();
+  }, [tokenManager.accessToken]);
 
   useEffect(() => {
     searchList.map(item => {
@@ -99,6 +118,28 @@ function PageContainer({
               <span>{title}</span>
             </div>
             <S.ContentsButtonContainer>
+              <>
+                {hasEditButton && (
+                  <Link to={`/${editUrl}/edit/${id}`}>
+                    <C.ContentsButton>편집</C.ContentsButton>
+                  </Link>
+                )}
+                {hasPostButton && CheckTokenHandler() && (
+                  <Link to={url}>
+                    <C.ContentsButton>추가</C.ContentsButton>
+                  </Link>
+                )}
+                {hasHistoryButton && (
+                  <Link to={`/board/${id}/record`}>
+                    <C.ContentsButton>역사</C.ContentsButton>
+                  </Link>
+                )}
+                {hasDeleteButton && (
+                  <Link onClick={onClick}>
+                    <C.ContentsButton>삭제</C.ContentsButton>
+                  </Link>
+                )}
+              </>
               {sort &&
                 (!(sort === "댓글") ? (
                   <>
