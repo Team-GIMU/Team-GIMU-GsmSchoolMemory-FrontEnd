@@ -3,11 +3,13 @@ import * as C from "../../components";
 import * as S from "./style";
 import { useFetch } from "../../Hooks";
 import { Link, useNavigate } from "react-router-dom";
-import GetRole from "../../lib/GetRole";
+import { useRecoilValue } from 'recoil';
+import { roleState } from "../../lib/RoleStore";
 import { toast } from "react-toastify";
 
 export default function Inquiry() {
   const [inquiryList, setInquiryList] = useState([]);
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   const { fetch } = useFetch({
     url: `/inquiry`,
@@ -17,9 +19,15 @@ export default function Inquiry() {
         b.createdDate.localeCompare(a.createdDate)
       );
       setInquiryList(sortedInquiryList);
+      setIsAuthorized(true);
+    },
+    onFailure: () => {
+      toast.error("권한이 없습니다.");
+      navigate("/");
     },
     errors: {
-      400: "문의 정보를 가져오지 못함"
+      400: "문의 정보를 가져오지 못함",
+      401: "권한이 없습니다."
     }
   });
 
@@ -28,14 +36,12 @@ export default function Inquiry() {
   }, []);
 
   const navigate = useNavigate();
-  const role = GetRole();
+  const role = useRecoilValue(roleState);
 
-  useEffect(() => {
-    if (role !== "관리자") {
-      toast.error("권한이 없습니다.");
-      navigate("/");
-    }
-  }, [role, navigate]);
+  // 권한이 확인되지 않았으면 로딩 상태 표시
+  if (!isAuthorized) {
+    return <div>로딩 중...</div>;
+  }
 
   return (
     <C.PageContainer title="문의" sort="문의" hasTitle>

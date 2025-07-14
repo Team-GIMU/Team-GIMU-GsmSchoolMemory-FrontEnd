@@ -34,12 +34,12 @@ const InquiryDetail = () => {
   const navigate = useNavigate();
   const role = GetRole();
 
-  useEffect(() => {
-    if (role !== "관리자") {
-      toast.error("권한이 없습니다.");
-      navigate("/");
-    }
-  }, [role, navigate]);
+  // useEffect(() => {
+  //   if (role !== "관리자") {
+  //     toast.error("권한이 없습니다.");
+  //     navigate("/");
+  //   }
+  // }, [role, navigate]);
 
   const formattedCreatedDate = new Date(state.createdDate).toLocaleString();
 

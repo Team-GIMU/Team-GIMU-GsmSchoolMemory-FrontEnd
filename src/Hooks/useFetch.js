@@ -23,12 +23,12 @@ const useFetch = options => {
         if (options.onSuccess) await options.onSuccess(data);
       } catch (e) {
         if (!(e instanceof AxiosError)) {
-          toast.error("알 수 없는 에러가 발생하였습니다.");
+          // toast.error("알 수 없는 에러가 발생하였습니다.");
           return;
         }
 
         if (e.response && e.response.status >= 500) {
-          toast.error("알 수 없는 에러가 발생했습니다");
+          // toast.error("알 수 없는 에러가 발생했습니다");
         } else if (typeof errors === "string") {
           toast.error(options.errors);
         } else if (

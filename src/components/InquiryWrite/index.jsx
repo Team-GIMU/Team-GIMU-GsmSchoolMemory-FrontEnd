@@ -80,7 +80,7 @@ export default function InquiryWrite() {
   };
 
   return (
-    <>
+    <S.WriteBoxContainer>
       <S.WriteOptions>
         <S.ChangeButtonContainer>
           <S.EditButton checked={edit} onClick={handleEdit}>
@@ -121,6 +121,6 @@ export default function InquiryWrite() {
       )}
       <S.RegisterButton onClick={postInquiry}>등록하기</S.RegisterButton>
       {showModal && <C.InquiryModal setShowModal={setShowModal} />}
-    </>
+    </S.WriteBoxContainer>
   );
 }

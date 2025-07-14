@@ -31,7 +31,7 @@ export const schoolGraphData = [
   },
   {
     titleChild: "학생 수",
-    contentChild: "215명(2023년 기준)",
+    contentChild: "215명(2025년 기준)",
     backgroundColor: "#62ADE0"
   },
   {
@@ -56,7 +56,7 @@ export const schoolGraphData = [
   },
   {
     titleChild: "교직원 수",
-    contentChild: "55명(2023년 기준)",
+    contentChild: "55명(2025년 기준)",
     backgroundColor: "#123262"
   },
   {
@@ -180,7 +180,7 @@ export const historyGraphData = [
     backgroundColor: "#123262"
   },
   {
-    titleChild: "2023년 3월 1일",
+    titleChild: "2025년 3월 1일",
     contentChild: "광주소프트웨어마이스터고등학교 제 28대 최홍진 교장 취임",
     backgroundColor: "#123262"
   }

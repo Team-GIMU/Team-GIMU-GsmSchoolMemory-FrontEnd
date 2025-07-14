@@ -3,15 +3,22 @@ import styled from "styled-components";
 export const WriteOptions = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   height: 4.7vh;
+
+  @media (max-width: 840px) {
+    max-width: 236px;
+    height: 100%;
+    flex-direction: column-reverse;
+  }
 `;
 
 export const WriteBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
-`
+  position: relative;
+`;
 
 export const ChangeButtonContainer = styled.div`
   display: flex;
@@ -35,8 +42,11 @@ export const EditButton = styled.button`
     font-size: 0.9rem;
   }
 
-  @media screen and (max-width: 800px) {
-    font-size: 0.8rem;
+  @media screen and (max-width: 840px) {
+    font-size: 18px;
+    width: 100%;
+    height: 100%;
+    padding: 3px 16px;
   }
 `;
 
@@ -55,8 +65,12 @@ export const PreviewButton = styled.button`
     font-size: 0.9rem;
   }
 
-  @media screen and (max-width: 800px) {
-    font-size: 0.8rem;
+  @media screen and (max-width: 840px) {
+    font-size: 18px;
+    width: 100%;
+    height: auto;
+    padding: 3px 16px;
+    white-space: nowrap;
   }
 `;
 
@@ -69,6 +83,13 @@ export const WriteBox = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+
+  @media screen and (max-width: 840px) {
+    border: none;
+    border-top: 1px solid #c0c0c0;
+    margin-top: -1px;
+    padding: 0;
+  }
 `;
 
 export const RegisterButton = styled.button`
@@ -80,10 +101,16 @@ export const RegisterButton = styled.button`
   height: 5vh;
   font-size: 1rem;
   margin: 20px 0;
-  float: right;
+  margin-left: auto;
+  cursor: pointer;
 
-
-  &:hover {
-    cursor: pointer;
+  @media screen and (max-width: 840px) {
+    position: absolute;
+    margin: 0 20px;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 40px);
+    height: 45px;
+    font-size: 18px;
   }
 `;

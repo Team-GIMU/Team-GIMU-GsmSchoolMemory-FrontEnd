@@ -12,6 +12,7 @@ export { default as Post } from "./Post";
 export { default as Inquiry } from "./Inquiry";
 export { default as InquiryDetail } from "./InquiryDetail";
 export { default as InquiryWrite } from "./InquiryWrite";
+export { default as Comment } from './Comment';
 export { default as Schedule } from "./Schedule";
 export { default as History } from "./History";
 export { default as HistoryDetail } from "./HistoryDetail";

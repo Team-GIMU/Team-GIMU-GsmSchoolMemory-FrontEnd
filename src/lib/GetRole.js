@@ -1,18 +1,33 @@
+import { roleState } from "./RoleStore";
 import jwtDecode from "jwt-decode";
 import TokenManager from "../apis/TokenManager";
 import { RoleData } from "../assets/data/RoleData";
+import { useFetch } from "../Hooks";
+import { useEffect } from "react";
+import { useRecoilState } from "recoil";
 
 const GetRole = () => {
-  const tokenManager = new TokenManager();
-  const accessToken = tokenManager.accessToken;
+  const [role, setRole] = useRecoilState(roleState);
 
-  if (!accessToken) return "";
+  const { fetch } = useFetch({
+    url: `/inquiry`,
+    method: "get",
+    onSuccess: () => {
+      setRole("관리자");
+    },
+    onFailure: () => {
+      setRole("사용자");
+    },
+    errors: {
+      400: "문의 정보를 가져오지 못함",
+      401: "권한이 없습니다."
+    }
+  });
+  useEffect(() => {
+    fetch();
+  }, []);
 
-  const userTable = jwtDecode(accessToken);
-
-  const setRole = RoleData.TOKEN[userTable.authority];
-
-  return setRole;
+  return role;
 };
 
 export default GetRole;

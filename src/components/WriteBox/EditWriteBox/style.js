@@ -16,12 +16,17 @@ export const CategoryInputBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: ${props => (props.type === "문의목적" ? "14.8vw" : "26vw")};
+  width: ${props => (props.type === "문의목적" ? "30vw" : "30vw")};
   margin-bottom: 10px;
+  margin-top: 20px;
+
+  span {
+    width: 100%;
+  }
 
   select {
     border: 1px solid #dddddd;
-    width: 10vw;
+    width: 100%;
     height: 25px;
     outline: none;
     color: #999999;
@@ -33,14 +38,14 @@ export const TitleInputBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 60vw;
+  width: 64vw;
   margin-bottom: 10px;
 
   span {
-    margin-left: 12px;
+    /* margin-left: 12px; */
     @media screen and (max-width: 840px) {
-    margin: 0px;
-  }
+      margin: 0px;
+    }
   }
 
   input {
@@ -85,7 +90,6 @@ export const LineNumberBox = styled.div`
   margin-left: 20px;
 `;
 
-
 export const AlarmBox = styled.div`
   display: flex;
   justify-content: space-between;
@@ -96,4 +100,4 @@ export const AlarmBox = styled.div`
   margin-top: 15px;
   color: #636363;
   font-weight: 300;
-  `
+`;

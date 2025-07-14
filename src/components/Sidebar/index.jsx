@@ -2,10 +2,22 @@ import * as S from "./style";
 import * as I from "../../assets";
 import TokenManager from "../../apis/TokenManager";
 import { toast } from "react-toastify";
+import { useRecoilValue } from "recoil";
+import { roleState } from "../../lib/RoleStore";
+import { useNavigate } from "react-router-dom";
+import GetRole from "../../lib/GetRole";
+import { useEffect } from "react";
 
 function Sidebar({ setShowSidebar, setShowLogin }) {
   const tokenManager = new TokenManager();
-  const isLoggedIn = tokenManager.accessToken && tokenManager.validateToken(tokenManager.accessExp, tokenManager.accessToken);
+  const isLoggedIn =
+    tokenManager.accessToken &&
+    tokenManager.validateToken(
+      tokenManager.accessExp,
+      tokenManager.accessToken
+    );
+  const role = GetRole();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -20,7 +32,11 @@ function Sidebar({ setShowSidebar, setShowLogin }) {
             <hr />
             <S.SidebarContent href="/notice">공지사항</S.SidebarContent>
             <hr />
-            <S.SidebarContent href="/inquiry">문의</S.SidebarContent>
+            <S.SidebarContent
+              href={role === "관리자" ? "/inquiry" : "/inquiryWrite"}
+            >
+              문의
+            </S.SidebarContent>
             <hr />
           </S.SidebarItem>
           <S.SidebarItem>
@@ -55,13 +71,15 @@ function Sidebar({ setShowSidebar, setShowLogin }) {
             if (isLoggedIn) {
               tokenManager.removeTokens();
               toast.success("로그아웃 되었습니다.");
+              navigate("/");
             } else {
               setShowLogin(true);
               setShowSidebar(false);
             }
           }}
         >
-          {isLoggedIn ? "로그아웃" : "로그인"}</S.LogText>
+          {isLoggedIn ? "로그아웃" : "로그인"}
+        </S.LogText>
       </S.ModalBox>
     </>
   );
