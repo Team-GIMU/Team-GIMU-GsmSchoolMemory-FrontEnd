@@ -81,12 +81,13 @@ export const WriteBox = styled.div`
   height: auto;
   display: flex;
   flex-direction: column;
-  /* padding: 20px; */
+  padding: 20px;
 
   @media screen and (max-width: 840px) {
     border: none;
     border-top: 1px solid #c0c0c0;
     margin-top: -1px;
+    padding: 0;
   }
 `;
 
@@ -95,12 +96,22 @@ export const RegisterButton = styled.button`
   outline: none;
   color: #ffffff;
   background-color: #007eff;
-  width: 8vw;
+  width: 100%;
   height: 5vh;
   font-size: 1rem;
   margin: 20px 0;
   margin-left: auto;
   cursor: pointer;
+
+  @media screen and (max-width: 840px) {
+    position: absolute;
+    margin: 0 20px;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 40px);
+    height: 45px;
+    font-size: 18px;
+  }
 `;
 
 export const MobileWriteBox = styled.div`

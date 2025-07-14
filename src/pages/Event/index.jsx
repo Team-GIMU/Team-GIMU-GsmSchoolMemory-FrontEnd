@@ -9,8 +9,8 @@ export default function Student() {
   if (!boardList) return null;
 
   const years = [
-    { title: "2023", type: "TWENTY_THIRD" },
-    { title: "2022", type: "TWENTY_SECOND" }
+    { title: "2025", type: "TWENTY_THIRD" },
+    { title: "2024", type: "TWENTY_SECOND" }
   ];
 
   const renderBoardItems = yearType => {

@@ -6,15 +6,18 @@ import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { Analytics } from "@vercel/analytics/react";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
     <>
-      <Provider store={store}>
-        <GlobalStyle />
-        <Router />
-        <ToastContainer />
-      </Provider>
+      <RecoilRoot>
+        <Provider store={store}>
+          <GlobalStyle />
+          <Router />
+          <ToastContainer />
+        </Provider>
+      </RecoilRoot>
       <Analytics />
     </>
   );

@@ -11,9 +11,9 @@ export default function Student() {
   if (!boardList) return null;
 
   const generations = [
-    { title: "5기", type: "FIFTH" },
-    { title: "6기", type: "SIXTH" },
-    { title: "7기", type: "SEVENTH" }
+    { title: "7기", type: "SEVENTH" },
+    { title: "8기", type: "SIXTH" },
+    { title: "9기", type: "FIFTH" }
   ];
 
   const handleBoardItemClick = boardId => {

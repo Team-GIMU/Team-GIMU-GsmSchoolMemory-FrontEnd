@@ -1,14 +1,17 @@
 import React from "react";
 import * as S from "./style";
 import * as I from "../../assets";
+import { useNavigate } from "react-router-dom";
 
 function Logout({ setShowLogout, onConfirm }) {
+  const navigate = useNavigate();
   function showLogoutModal() {
     setShowLogout(prev => !prev);
   }
   const onClick = () => {
     setShowLogout(prev => !prev);
     onConfirm();
+    navigate("/");
   };
   return (
     <>

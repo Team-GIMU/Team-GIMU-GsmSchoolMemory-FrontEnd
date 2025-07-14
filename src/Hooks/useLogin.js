@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import useFetch from "./useFetch";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import GetRole from "../lib/GetRole";
 
 const useLogin = ({ email, password }) => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const useLogin = ({ email, password }) => {
         const tokenManager = new TokenManager();
         tokenManager.setTokens(data);
         toast.success("로그인에 성공하였습니다.");
-        console.log(data.accessTokenExpiresIn, data.refreshTokenExpiresIn);
+        GetRole();
         navigate("/");
       }
     },

@@ -30,3 +30,4 @@ export { default as InquiryModal } from "./InquiryModal";
 export { default as Login } from "./Login";
 export { default as Signup } from "./Signup";
 export { default as Sidebar } from "./Sidebar";
+export { default as Comment } from "./Comment";

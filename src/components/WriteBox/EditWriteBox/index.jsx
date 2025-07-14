@@ -54,8 +54,8 @@ function EditWriteBox({
               {category === "STUDENT" && (
                 <>
                   <option value="SEVENTH">7기</option>
-                  <option value="SIXTH">6기</option>
-                  <option value="FIFTH">5기</option>
+                  <option value="SIXTH">8기</option>
+                  <option value="FIFTH">9기</option>
                 </>
               )}
               {category === "TEACHER" && (
@@ -78,8 +78,8 @@ function EditWriteBox({
               )}
               {category === "INCIDENT" && (
                 <>
-                  <option value="TWENTY_SECOND">2022</option>
-                  <option value="TWENTY_THIRD">2023</option>
+                  <option value="TWENTY_SECOND">2024</option>
+                  <option value="TWENTY_THIRD">2025</option>
                 </>
               )}
               {category === "SCHEDULE" && (
@@ -129,8 +129,8 @@ function EditWriteBox({
               )}
               {category === "INCIDENT" && (
                 <>
-                  <option value="TWENTY_SECOND">2022</option>
-                  <option value="TWENTY_THIRD">2023</option>
+                  <option value="TWENTY_SECOND">2024</option>
+                  <option value="TWENTY_THIRD">2025</option>
                 </>
               )}
             </select>

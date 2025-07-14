@@ -14,14 +14,9 @@ function DropMenu({ onMouseEnter, onMouseLeave }) {
             <Link to="/notice">
               <span>공지사항</span>
             </Link>
-            <Link to="/inquiryWrite">
+            <Link to={data === "관리자" ? "/inquiry" : "/inquiryWrite"}>
               <span>문의</span>
             </Link>
-            {data === "관리자" ? (
-              <Link to="/inquiry">
-                <span>문의 리스트</span>
-              </Link>
-            ) : null}
             {data === "관리자" ? (
               <Link to="/role">
                 <span>권한 부여</span>

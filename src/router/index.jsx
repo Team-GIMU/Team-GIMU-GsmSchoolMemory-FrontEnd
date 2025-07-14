@@ -28,6 +28,7 @@ export default function Router() {
       <Route path="/notice/:id" element={<P.NoticeDetail />} />
       <Route path="/post" element={<P.Post />} />
       <Route path={`/board/:id`} element={<P.BoardDetail />} />
+      <Route path={`/board/:id/comment`} element={<P.Comment />} />
       <Route path={`/board/:id/record`} element={<P.History />} />
       <Route path={`/board/edit/:id`} element={<P.Edit />} />
       <Route path={`/notice/edit/:id`} element={<P.EditNotice />} />
@@ -36,7 +37,6 @@ export default function Router() {
       <Route path="/inquiryWrite" element={<P.InquiryWrite />} />
       <Route path="/schedule" element={<P.Schedule />} />
       <Route path="/promotion" element={<P.Promotion />} />
-
       <Route path="/role" element={<P.Role />} />
       <Route path="/inquiry/:id" element={<P.InquiryDetail />} />
       <Route path="/noticeWrite" element={<P.NoticeWrite />} />
