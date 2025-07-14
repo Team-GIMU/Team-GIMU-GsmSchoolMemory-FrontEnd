@@ -35,6 +35,7 @@ export const NTBox = styled.div`
 `;
 
 export const Date = styled.p`
+  height: 0.8rem;
   text-align: right;
   font-size: 0.8rem;
   color: #999;
