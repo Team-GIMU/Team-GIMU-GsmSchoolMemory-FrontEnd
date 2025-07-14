@@ -114,28 +114,6 @@ function PageContainer({
               <span>{title}</span>
             </div>
             <S.ContentsButtonContainer>
-              <>
-                {hasEditButton && (
-                  <Link to={`/${editUrl}/edit/${id}`}>
-                    <C.ContentsButton>편집</C.ContentsButton>
-                  </Link>
-                )}
-                {hasPostButton && CheckTokenHandler() && (
-                  <Link to={url}>
-                    <C.ContentsButton>추가</C.ContentsButton>
-                  </Link>
-                )}
-                {hasHistoryButton && (
-                  <Link to={`/board/${id}/record`}>
-                    <C.ContentsButton>역사</C.ContentsButton>
-                  </Link>
-                )}
-                {hasDeleteButton && (
-                  <Link onClick={onClick}>
-                    <C.ContentsButton>삭제</C.ContentsButton>
-                  </Link>
-                )}
-              </>
               {sort &&
                 (!(sort === "댓글") ? (
                   <>
