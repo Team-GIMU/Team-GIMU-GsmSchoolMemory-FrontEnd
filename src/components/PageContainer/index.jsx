@@ -1,14 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import React, { useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import * as C from "../../components";
 import * as S from "./style";
 import * as I from "../../assets";
-import { useEdit, useSearchList } from "../../Hooks";
 import TokenManager from "../../apis/TokenManager";
 import { useFetch, useSearchList } from "../../Hooks";
-import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 function PageContainer({
