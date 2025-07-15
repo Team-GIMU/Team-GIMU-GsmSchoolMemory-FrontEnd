@@ -114,8 +114,7 @@ function Main() {
       <C.Detail hasNumber={true} number={5} title={"학과운영"}>
         <S.DepartmentContainer>
           <div>
-            현재, 1학년은 SW개발과, 임베디드SW과. 인공지능과, 2학년은 SW개발과,
-            스마트IOT과. 3학년은 SW개발과, 임베디드 SW과로 운영되고 있다.
+            현재, 전 학년이 SW개발과, 임베디드SW과. 인공지능과로 운영되고 있다.
           </div>
           <div>
             <S.DepartmentTitle>SW개발과</S.DepartmentTitle>
